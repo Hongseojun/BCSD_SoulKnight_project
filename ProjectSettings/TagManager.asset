@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - "\uACBD\uACC4_h"
+  - "\uACBD\uACC4_v"
+  - "\uACBD\uACC4"
   layers:
   - Default
   - TransparentFX

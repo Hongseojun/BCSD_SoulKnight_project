@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,10 @@ public class Player : MonoBehaviour
     public int Player_curMp;
     public int Player_maxMp;
     public int Player_Gold;
+
+    public bool isTouch_h;
+    public bool isTouch_v;
+
     public JoyStick joystick;
 
     Animator anim;
@@ -55,5 +60,4 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
-
 }
