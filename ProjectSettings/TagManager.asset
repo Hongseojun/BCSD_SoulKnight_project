@@ -7,6 +7,8 @@ TagManager:
   - "\uACBD\uACC4_h"
   - "\uACBD\uACC4_v"
   - "\uACBD\uACC4"
+  - Border_h
+  - Border_v
   layers:
   - Default
   - TransparentFX
@@ -49,4 +51,10 @@ TagManager:
     locked: 0
   - name: UI_2
     uniqueID: 2028602033
+    locked: 0
+  - name: skill
+    uniqueID: 3218340859
+    locked: 0
+  - name: player
+    uniqueID: 3434333745
     locked: 0
