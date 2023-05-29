@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Skill_Effect : MonoBehaviour
 {
-    private bool state;
-
     Animator anim;
-    UseTime usetime;
     Image image;
 
     Color color;
-    public Player player;
 
-    void Start()
-    {
-        state = false;
-    }
+    public Player player;
+    public JoyStick joystick;
+
+    public Vector3 followPos;
+    public Transform parent;
+
 
     void Awake()
     {
@@ -26,38 +25,26 @@ public class Skill_Effect : MonoBehaviour
 
     void Update()
     {
-        Vector3 spotpos = player.transform.position;
-        float h = spotpos.x;
-        float v = spotpos.y;
-        float speed = 6;
-
-        
-        Vector3 curPos = transform.position;
-        Vector3 nextPos = new Vector3(h, v, 0) * speed * Time.deltaTime;
-
-        transform.position = curPos + nextPos;
-
-        if (state == true)
-        {
-            color.a = 255;
-            image.color = color;
-        }
-        else if (state == false)
-        {
-            color.a = 0;
-            image.color = color;
-        }
+        Watch();
+        Follow();
     }
-    public void skill_start()
+    void Watch()
     {
-        float left_t = usetime.leftTime;
-        if (left_t > 0)
+
+        followPos = parent.position;
+    }
+
+    void Follow()
+    {
+        float x = followPos.x;
+        float y = followPos.y;
+        if (joystick.JoyVec.x > 0)
         {
-            state = true;
+            transform.position = new Vector3(x + 0.2f, y + 0.35f, 0);
         }
-        else
+        else if (joystick.JoyVec.x < 0)
         {
-            state = false;
+            transform.position = new Vector3(x - 0.2f, y + 0.35f, 0);
         }
     }
 }

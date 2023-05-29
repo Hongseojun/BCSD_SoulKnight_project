@@ -4,47 +4,45 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Player player;
-    public GameObject HP_Bar;
-    public GameObject Shield_Bar;
-    public GameObject MP_Bar;
+    public UseTime usetime;
+    public GameObject skill;
 
-    void Start()
+    public bool skill_use;
+
+    void Awake()
     {
-        HpBar();
-        ShieldBar();
-        MpBar();
+        skill_use = false;
     }
 
     void Update()
     {
-
+        Skill();
+        Skill_Start();
     }
 
-    void HpBar()
+    void Skill()
     {
-        HP_Bar.transform.localScale = new Vector3(2.28f / player.Player_maxHp, 0.25f, 0);
-        for (int i = 0; i < player.Player_curHp; i++)
+        if (skill_use == true)
+        { 
+            skill.SetActive(true);
+        }
+        if (skill_use == false)
         {
-            GameObject hp_bar = Instantiate(HP_Bar, new Vector2((i * 2.28f / player.Player_maxHp) + (-9.1f), 4.547f), transform.rotation);
+            skill.SetActive(false);
         }
     }
 
-    void ShieldBar()
+    void Skill_Start()
     {
-        Shield_Bar.transform.localScale = new Vector3(2.28f / player.Player_maxShield, 0.25f, 0);
-        for (int i = 0; i < player.Player_curShield; i++)
+        float left_t = usetime.leftTime;
+        if (left_t > 0)
         {
-            GameObject shield_bar = Instantiate(Shield_Bar, new Vector2((i * 2.28f / player.Player_maxShield) + (-9.08f), 4.135f), transform.rotation);
+            skill_use = true;
         }
-    }
+        else
+        {
+            skill_use = false;
+        }
 
-    void MpBar()
-    {
-        MP_Bar.transform.localScale = new Vector3(2.28f / player.Player_maxMp, 0.25f, 0);
-        for (int i = 0; i < player.Player_curMp; i++)
-        {
-            GameObject mp_bar = Instantiate(MP_Bar, new Vector2((i * 2.28f / player.Player_maxMp) + (-9.26f), 3.742f), transform.rotation);
-        }
     }
 }
