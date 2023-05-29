@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class Player : MonoBehaviour
     public bool isTouch_v;
 
     public JoyStick joystick;
+    public GameObject bulletObj;
+    public Transform FirePos;
+    public Button button;
 
     Animator anim;
-
 
     void Awake()
     {
@@ -59,5 +62,10 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+    }
+
+    public void Fire()
+    {
+        GameObject bullet = Instantiate(bulletObj, transform.position, transform.rotation);
     }
 }
