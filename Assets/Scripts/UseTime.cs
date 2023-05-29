@@ -7,42 +7,64 @@ public class UseTime : MonoBehaviour
 {
     public Image image;
     public Button button;
-    public float coolTime;
-    public bool isClicked = false;
     public float speed;
     public float leftTime;
+    public float leftTime2;
+    public float coolTime;
+    public float coolTime2;
 
     void Update()
     {
-        if (isClicked)
-            if (leftTime > 0)
+        if (leftTime > 0)
+        {
+            StartUseFill();
+        }
+        else if (leftTime < 0)
+        {
+            Invoke("StartCoolTime", 0.5f);
+            leftTime = 0;
+        }
+
+        if (leftTime2 > 0)
+        {
+            StartCoolFill();
+        }
+        else if (leftTime2 < 0)
+        {
+            leftTime2 = 0;
+            if (button)
             {
-                leftTime -= Time.deltaTime * speed;
-                if (leftTime < 0)
-                {
-                    leftTime = 0;
-                    if (button)
-                    {
-                        button.enabled = true;
-                    }
-                    isClicked = true;
-                }
-
-                float ratio = 0 + (leftTime / coolTime);
-
-                if (image)
-                    image.fillAmount = ratio;
+                button.enabled = true;
             }
+        }
     }
 
-    public void StartCoolTime()
+    public void StartUseTime()
     {
         leftTime = coolTime;
-        isClicked = true;
         if (button)
         {
             button.enabled = false;
         }
 
+    }
+
+    void StartCoolTime()
+    {
+        leftTime2 = coolTime2;
+    }
+
+    void StartUseFill()
+    {
+        leftTime -= Time.deltaTime * speed;
+        float ratio = 0 + (leftTime / coolTime);
+        image.fillAmount = ratio;
+    }
+
+    void StartCoolFill()
+    {
+        leftTime2 -= Time.deltaTime * speed;
+        float ratio = 1 - (leftTime2 / coolTime2);
+        image.fillAmount = ratio;
     }
 }

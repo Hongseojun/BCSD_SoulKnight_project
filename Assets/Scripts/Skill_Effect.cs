@@ -46,5 +46,9 @@ public class Skill_Effect : MonoBehaviour
         {
             transform.position = new Vector3(x - 0.2f, y + 0.35f, 0);
         }
+        else
+        {
+            transform.position = new Vector3(x, y + 0.35f, 0);
+        }
     }
 }
