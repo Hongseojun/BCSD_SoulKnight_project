@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - "\uACBD\uACC4_h"
-  - "\uACBD\uACC4_v"
-  - "\uACBD\uACC4"
-  - Border_h
-  - Border_v
+  - "\uACBD\uACC4_\uC704"
+  - "\uACBD\uACC4_\uC544\uB798"
+  - "\uACBD\uACC4_\uC88C"
+  - "\uACBD\uACC4_\uC6B0"
   layers:
   - Default
   - TransparentFX
@@ -57,4 +56,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 3434333745
+    locked: 0
+  - name: weapons
+    uniqueID: 2475078973
     locked: 0

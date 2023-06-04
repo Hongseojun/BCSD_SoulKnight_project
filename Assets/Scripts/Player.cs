@@ -15,8 +15,10 @@ public class Player : MonoBehaviour
     public int Player_maxMp;
     public int Player_Gold;
 
-    public bool isTouch_h;
-    public bool isTouch_v;
+    public bool isTouch_up;
+    public bool isTouch_down;
+    public bool isTouch_left;
+    public bool isTouch_right;
 
     public JoyStick joystick;
     public GameObject bulletObj;
@@ -34,16 +36,58 @@ public class Player : MonoBehaviour
     {
         Move();
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "경계_위":
+                isTouch_up = true;
+                break;
+            case "경계_아래":
+                isTouch_down = true;
+                break;
+            case "경계_좌":
+                isTouch_left = true;
+                break;
+            case "경계_우":
+                isTouch_right = true;
+                break;
+        }
+    }
 
     void Move()
     {
         float h = joystick.JoyVec.x;
         float v = joystick.JoyVec.y;
 
-        Vector3 curPos = transform.position;
-        Vector3 nextPos = new Vector3(h, v, 0) * speed * Time.deltaTime;
+        if (isTouch_up == true && v > 0)
+        {
+            v = 0;
+        }
+        else if (isTouch_down == true && v < 0)
+        {
+            v = 0;
+        }
+        else if (isTouch_left == true && h < 0)
+        {
+            h = 0;
+        }
+        else if (isTouch_right == true && h > 0)
+        {
+            h = 0;
+        }
+        else
+        {
+            isTouch_up = false;
+            isTouch_down = false;
+            isTouch_left = false;
+            isTouch_right = false;
 
-        transform.position = curPos + nextPos;
+            Vector3 curPos = transform.position;
+            Vector3 nextPos = new Vector3(h, v, 0) * speed * Time.deltaTime;
+
+            transform.position = curPos + nextPos;
+        }
 
         if (joystick.JoyVec.x != 0 || joystick.JoyVec.y != 0)
         {
