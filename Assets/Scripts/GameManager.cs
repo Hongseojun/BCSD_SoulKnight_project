@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public UseTime usetime;
     public GameObject skill;
     public GameObject cooltime;
+    public GameObject weapon_skill;
+    public GameObject player;
 
     public bool skill_use;
 
@@ -28,10 +30,13 @@ public class GameManager : MonoBehaviour
         if (skill_use == true)
         { 
             skill.SetActive(true);
+            weapon_skill.transform.position = player.transform.position;
+            weapon_skill.SetActive(true);
         }
         if (skill_use == false)
         {
             skill.SetActive(false);
+            weapon_skill.SetActive(false);
         }
     }
 

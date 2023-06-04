@@ -20,6 +20,9 @@ public class Bullet : MonoBehaviour
             case "경계_우":
                 Destroy(gameObject);
                 break;
+            case "박스":
+                Destroy(gameObject);
+                break;
         }
     }
 }

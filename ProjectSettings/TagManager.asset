@@ -8,6 +8,8 @@ TagManager:
   - "\uACBD\uACC4_\uC544\uB798"
   - "\uACBD\uACC4_\uC88C"
   - "\uACBD\uACC4_\uC6B0"
+  - "\uBC15\uC2A4"
+  - "\uCD1D\uC54C"
   layers:
   - Default
   - TransparentFX
@@ -53,6 +55,9 @@ TagManager:
     locked: 0
   - name: skill
     uniqueID: 3218340859
+    locked: 0
+  - name: weapon_skill
+    uniqueID: 4108497507
     locked: 0
   - name: player
     uniqueID: 3434333745

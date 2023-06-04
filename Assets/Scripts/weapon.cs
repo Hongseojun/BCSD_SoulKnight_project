@@ -18,6 +18,9 @@ public class weapon : MonoBehaviour
     public float bullet_speed;
     private Rigidbody2D rigid;
 
+    public float fireRate = 0.5f;
+    private float nextFire;
+
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -59,18 +62,16 @@ public class weapon : MonoBehaviour
     public void Fire()
     {
         Vector2 dir = joystick.JoyVec.normalized;
-        Vector3 curPos = transform.position;
-        Vector3 nextPos = new Vector2(dir.x, dir.y) * bullet_speed * Time.deltaTime;
 
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a") && Time.time > nextFire)
         {
-            Instantiate(bulletObj, transform.position, transform.rotation);
-            while (true)
+            nextFire = Time.time + fireRate;
+            if (dir.x != 0 && dir.y != 0)
             {
-                bulletObj.transform.position = curPos + nextPos;
+                GameObject bullet = Instantiate(bulletObj, transform.position, transform.rotation);
+                bullet.GetComponent<Rigidbody2D>().velocity = dir * bullet_speed;
             }
         }
-
     }
 
 }
