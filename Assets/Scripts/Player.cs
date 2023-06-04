@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     public bool isTouch_right;
 
     public JoyStick joystick;
-    public GameObject bulletObj;
     public Transform FirePos;
     public Button button;
 
@@ -108,8 +107,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Fire()
-    {
-        GameObject bullet = Instantiate(bulletObj, transform.position, transform.rotation);
-    }
 }

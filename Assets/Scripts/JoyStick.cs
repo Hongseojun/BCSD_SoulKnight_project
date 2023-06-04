@@ -12,7 +12,7 @@ public class JoyStick : MonoBehaviour
 
     private Vector3 StickFirstPos; 
     private float Radius;
-    private bool MoveFlag;
+    public bool MoveFlag;
 
 
     void Start()

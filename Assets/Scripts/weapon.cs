@@ -6,27 +6,28 @@ using UnityEngine.UI;
 
 public class weapon : MonoBehaviour
 {
-    Animator anim;
-    Image image;
     SpriteRenderer rend;
-
-    Color color;
 
     public Player player;
     public JoyStick joystick;
 
     public Vector3 followPos;
     public Transform player_tf;
+    public GameObject bulletObj;
+
+    public float bullet_speed;
+    private Rigidbody2D rigid;
 
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
         Watch();
         Follow();
-        //TurnAngle();
+        Fire();
     }
     void Watch()
     {
@@ -55,25 +56,23 @@ public class weapon : MonoBehaviour
             transform.position = new Vector3(x - 0.3f, y + -0.35f, 0);
         }
     }
-
-    void TurnAngle()
+    public void Fire()
     {
         Vector2 dir = joystick.JoyVec.normalized;
-        float z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Vector3 curPos = transform.position;
+        Vector3 nextPos = new Vector2(dir.x, dir.y) * bullet_speed * Time.deltaTime;
 
-        if (-100 <= z && z <= 100)
+        if (Input.GetKey("a"))
         {
-            rend.flipX = false;
-            transform.rotation = Quaternion.Euler(0f, 0f, z);
-        }
-        else
-        {
-            rend.flipX = true;
-            transform.rotation = Quaternion.Euler(0f, 0f, z - 180f);
+            Instantiate(bulletObj, transform.position, transform.rotation);
+            while (true)
+            {
+                bulletObj.transform.position = curPos + nextPos;
+            }
         }
 
     }
 
-    }
+}
 
 

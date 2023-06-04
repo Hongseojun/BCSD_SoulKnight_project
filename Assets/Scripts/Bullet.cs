@@ -4,30 +4,22 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float bullet_speed = 10f;
-    private float lifetime = 5f;
-    private float spawnTime;
-
-    public JoyStick joystick;
-
-    void Start()
-    {
-        spawnTime = Time.time;
-    }
-
-    void Update()
-    {
-        transform.position += new Vector3(0, bullet_speed * Time.deltaTime, 0);
-        if (Time.time - spawnTime > lifetime)
-        {
-            Destroy(gameObject);
-        }
-    }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "경계")
+        switch (collision.gameObject.tag)
         {
-            Destroy(gameObject);
+            case "경계_위":
+                Destroy(gameObject);
+                break;
+            case "경계_아래":
+                Destroy(gameObject);
+                break;
+            case "경계_좌":
+                Destroy(gameObject);
+                break;
+            case "경계_우":
+                Destroy(gameObject);
+                break;
         }
     }
 }
