@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public bool isTouch_down;
     public bool isTouch_left;
     public bool isTouch_right;
+    public bool isTouch_Weapon_shark;
+    public bool isTouch_box;
 
     public JoyStick joystick;
     public Transform FirePos;
@@ -52,6 +54,25 @@ public class Player : MonoBehaviour
             case "경계_우":
                 isTouch_right = true;
                 break;
+            case "박스":
+                isTouch_box = true;
+                break;
+        }
+
+        if (collision.gameObject.tag == "무기_상어")
+        {
+            isTouch_Weapon_shark = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "무기_상어")
+        {
+            isTouch_Weapon_shark = false;
+        }
+        if (collision.gameObject.tag == "박스")
+        {
+            isTouch_box = false;
         }
     }
 
@@ -75,6 +96,10 @@ public class Player : MonoBehaviour
         else if (isTouch_right == true && h > 0)
         {
             h = 0;
+        }
+        else if(isTouch_box == true)
+        {
+
         }
         else
         {
